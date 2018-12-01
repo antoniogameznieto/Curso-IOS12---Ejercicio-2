@@ -43,10 +43,30 @@ class ViewController: UIViewController {
     func generarDadosAleatorios(){
         // Dado Izquierdo
         valorDadoIzquierdo = Int(arc4random_uniform(numeroCaras))
-        self.imageViewDadoIzquierda.image = UIImage(named: imagenesDados[valorDadoIzquierdo])
+        
         // Dado Derecho
         valorDadoDerecho = Int(arc4random_uniform(numeroCaras))
-        self.imageViewDadoDerecha.image = UIImage(named: imagenesDados[valorDadoDerecho])
+        
+        // Animación
+        UIView.animate(withDuration: 0.3, // duracion de la animación
+                       delay: 0.1, // tiempo que tarda en arrancar desde que pulsamos
+                       options: UIView.AnimationOptions.curveEaseIn, //tipo de animación
+                       animations: { // codigo de animación en si
+                        self.imageViewDadoDerecha.transform =
+                            CGAffineTransform(scaleX: 0.9, y: 0.9) .                          concatenating(CGAffineTransform(rotationAngle: CGFloat.pi)) .
+                                concatenating(CGAffineTransform(translationX: 0, y: 20))
+                        self.imageViewDadoIzquierda.transform =
+                            CGAffineTransform(scaleX: 0.9, y: 0.9) .                          concatenating(CGAffineTransform(rotationAngle: CGFloat.pi)) .
+                                concatenating(CGAffineTransform(translationX: 0, y: 20))
+                        
+                        
+        }) {(completed) in // cuando acaba
+            self.imageViewDadoDerecha.image = UIImage(named: self.imagenesDados[self.valorDadoDerecho])
+            self.imageViewDadoIzquierda.image = UIImage(named: self.imagenesDados[self.valorDadoIzquierdo])
+            self.imageViewDadoDerecha.transform = CGAffineTransform.identity // vuelve al estado original
+            self.imageViewDadoIzquierda.transform = CGAffineTransform.identity // vuelve al estado original
+        }
+        
     }
     
 }
