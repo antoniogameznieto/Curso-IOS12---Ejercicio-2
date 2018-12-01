@@ -41,6 +41,9 @@
                                 <state key="normal" title="JUGAR">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="jugarPulsado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wFY-Jg-quM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -58,6 +61,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="buttonJugar" destination="Ni5-w7-bMj" id="m9L-d1-09E"/>
+                        <outlet property="imageViewDadoDerecha" destination="fQ5-T7-S9p" id="oZ1-uQ-vaf"/>
+                        <outlet property="imageViewDadoIzquierda" destination="PLT-jb-UkM" id="N02-1T-uUM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
