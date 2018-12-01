@@ -16,25 +16,37 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageViewDadoDerecha: UIImageView!
     @IBOutlet weak var buttonJugar: UIButton!
     
-    var valorDado1 = Int.random(in: 1 ..< 7)
-    var valorDado2 = Int.random(in: 1 ..< 7)
+    // Declaración de variables
+    var valorDadoIzquierdo : Int = 0
+    var valorDadoDerecho : Int = 0
+    let imagenesDados : [String]
+    let numeroCaras : UInt32
     
+    required init?(coder aDecoder: NSCoder) { // Inicializador
+        imagenesDados = ["dado1", "dado2", "dado3", "dado4", "dado5", "dado6"]
+        numeroCaras = UInt32(imagenesDados.count)
+        super.init(coder: aDecoder)
+    }
+    
+    // Métodos del ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.imageViewDadoIzquierda.image = UIImage(named: "dado\(valorDado1)")
-        self.imageViewDadoDerecha.image = UIImage(named: "dado\(valorDado2)")
+        generarDadosAleatorios()
     }
 
-    // Métodos
+    // Métodos propios
     @IBAction func jugarPulsado(_ sender: UIButton) {
-        valorDado1 = Int.random(in: 1 ..< 7)
-        valorDado2 = Int.random(in: 1 ..< 7)
-        self.imageViewDadoIzquierda.image = UIImage(named: "dado\(valorDado1)")
-        self.imageViewDadoDerecha.image = UIImage(named: "dado\(valorDado2)")
+        generarDadosAleatorios()
     }
     
-    
+    // Función que genera los dados aleatorios
+    func generarDadosAleatorios(){
+        // Dado Izquierdo
+        valorDadoIzquierdo = Int(arc4random_uniform(numeroCaras))
+        self.imageViewDadoIzquierda.image = UIImage(named: imagenesDados[valorDadoIzquierdo])
+        // Dado Derecho
+        valorDadoDerecho = Int(arc4random_uniform(numeroCaras))
+        self.imageViewDadoDerecha.image = UIImage(named: imagenesDados[valorDadoDerecho])
+    }
     
 }
-
