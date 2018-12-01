@@ -69,4 +69,18 @@ class ViewController: UIViewController {
         
     }
     
+    // Sobreescribimos el metodo para responder al shake, al acelerometro...
+    override func becomeFirstResponder() -> Bool {
+        return true;
+    }
+    
+    // cuando el evento de agitar finaliza correctamente
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        // si el movimiento es identificado como motionShake
+        if motion == .motionShake{
+            generarDadosAleatorios()
+        }
+    }
+    
+    
 }
